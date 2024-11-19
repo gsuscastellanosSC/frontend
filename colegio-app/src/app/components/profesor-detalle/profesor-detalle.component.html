@@ -3,7 +3,7 @@
 
     <!-- Botón para regresar -->
     <div class="back-button">
-        <button (click)="regresarAlListado()">Regresar al listado de profesores</button>
+        <button class="button-common" (click)="regresarAlListado()">Regresar al listado de profesores</button>
     </div>
 
     <!-- Tabla de datos -->
@@ -23,14 +23,14 @@
     </table>
 
     <!-- Controles de Paginación -->
-    <div class="pagination-controls">
-        <button (click)="paginaActual > 1 && cambiarPagina(paginaActual - 1)">
+    <div class="pagination-controls" *ngIf="datos.length > tamanioPagina">
+        <button class="button-common" (click)="paginaActual > 1 && cambiarPagina(paginaActual - 1)">
             Anterior
         </button>
         <span>
             Página {{ paginaActual }} de {{ maxPaginas }}
         </span>
-        <button (click)="paginaActual < maxPaginas && cambiarPagina(paginaActual + 1)">
+        <button class="button-common" (click)="paginaActual < maxPaginas && cambiarPagina(paginaActual + 1)">
             Siguiente
         </button>
     </div>

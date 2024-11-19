@@ -9,14 +9,16 @@
         </li>
     </ul>
 
-    <!-- Paginación -->
-    <div class="pagination-controls">
-        <button (click)="paginaActual > 1 && cambiarPagina(paginaActual - 1)">
-            Anterior
-        </button>
-        <span>Página {{ paginaActual }} de {{ maxPaginas }}</span>
-        <button (click)="paginaActual < maxPaginas && cambiarPagina(paginaActual + 1)">
-            Siguiente
-        </button>
+    <!-- Controles de Paginación -->
+    <div class="pagination-controls" *ngIf="profesores.length > tamanioPagina">
+        <button class="button-common" (click)="paginaActual > 1 && cambiarPagina(paginaActual - 1)">
+        Anterior
+    </button>
+        <span>
+        Página {{ paginaActual }} de {{ maxPaginas }}
+    </span>
+        <button class="button-common" (click)="paginaActual < maxPaginas && cambiarPagina(paginaActual + 1)">
+        Siguiente
+    </button>
     </div>
 </div>

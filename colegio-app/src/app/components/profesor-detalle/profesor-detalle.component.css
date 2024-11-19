@@ -112,21 +112,41 @@ h2 {
 }
 
 
-/* Estilos comunes para todos los botones */
+/* Contenedor del botón */
+
+.back-button {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-start;
+    /* Alinear el botón a la izquierda */
+}
+
+
+/* Estilo del botón */
 
 .button-common {
-    padding: 10px 15px;
+    padding: 12px 20px;
     font-size: 14px;
+    font-weight: bold;
     color: white;
     background-color: #4caf50;
-    /* Verde escolar */
+    /* Verde temático */
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 .button-common:hover {
     background-color: #3e8e41;
-    /* Verde más oscuro */
+    /* Verde más oscuro al pasar el cursor */
+    transform: translateY(-2px);
+    /* Efecto de elevación */
+}
+
+.button-common:active {
+    transform: translateY(0);
+    /* Volver a la posición original */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
