@@ -4,6 +4,7 @@ import { ProfesorService } from '../../services/profesor.service';
 import { CommonModule } from '@angular/common';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-profesor-detalle',
@@ -12,23 +13,30 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
   styleUrls: ['./profesor-detalle.component.css'],
   imports: [MatTableModule, MatPaginatorModule, CommonModule],
 })
+
 export class ProfesorDetalleComponent implements OnInit {
-  datos: any[] = []; // Datos completos
-  datosPaginados: any[] = []; // Datos para la página actual
+  datos: any[] = [];
+  datosPaginados: any[] = [];
   paginaActual: number = 1;
-  tamanioPagina: number = 5; // Cambia este valor si necesitas otro tamaño por página
+  tamanioPagina: number = 5; 
 
   constructor(
     private route: ActivatedRoute,
-    private profesorService: ProfesorService
+    private profesorService: ProfesorService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     const profesorId = Number(this.route.snapshot.paramMap.get('profesorId'));
     this.profesorService.getDetalleProfesor(profesorId).subscribe((data) => {
-      this.datos = data; // Guarda los datos obtenidos del backend
-      this.actualizarPagina(); // Actualiza los datos para la página actual
+      this.datos = data;
+      this.actualizarPagina();
     });
+  }
+
+  // Regresa al listado de profesores
+  regresarAlListado(): void {
+    this.router.navigate(['/']); // Navega a la página raíz
   }
 
   // Calcula los datos para la página actual

@@ -110,3 +110,23 @@ h2 {
     font-weight: bold;
     color: #333;
 }
+
+
+/* Estilos comunes para todos los botones */
+
+.button-common {
+    padding: 10px 15px;
+    font-size: 14px;
+    color: white;
+    background-color: #4caf50;
+    /* Verde escolar */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-common:hover {
+    background-color: #3e8e41;
+    /* Verde más oscuro */
+}

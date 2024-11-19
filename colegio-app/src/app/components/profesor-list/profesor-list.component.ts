@@ -12,7 +12,11 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [CommonModule, RouterModule, HttpClientModule],
 })
 export class ProfesorListComponent implements OnInit {
-  profesores: any[] = [];
+  [x: string]: any;
+  profesores: any[] = []; // Datos completos
+  profesoresPaginados: any[] = []; // Profesores para la página actual
+  paginaActual: number = 1;
+  tamanioPagina: number = 5; // Número de profesores por página
 
   constructor(
     private profesorService: ProfesorService,
@@ -21,11 +25,31 @@ export class ProfesorListComponent implements OnInit {
 
   ngOnInit(): void {
     this.profesorService.getAllProfesores().subscribe((data) => {
-      this.profesores = data;
+      this.profesores = data; // Cargar datos desde el servicio
+      this.actualizarPagina(); // Inicializa la primera página
     });
   }
 
+  // Actualiza los profesores para la página actual
+  actualizarPagina(): void {
+    const inicio = (this.paginaActual - 1) * this.tamanioPagina;
+    const fin = inicio + this.tamanioPagina;
+    this.profesoresPaginados = this.profesores.slice(inicio, fin);
+  }
+
+  // Cambia la página
+  cambiarPagina(nuevaPagina: number): void {
+    this.paginaActual = nuevaPagina;
+    this.actualizarPagina();
+  }
+
+  // Calcula el número máximo de páginas
+  get maxPaginas(): number {
+    return Math.ceil(this.profesores.length / this.tamanioPagina);
+  }
+
+  // Navega al detalle del profesor
   verDetalle(profesorId: number): void {
-    this.router.navigate(['/profesor-detalle', profesorId]);
+    this.router.navigate([`/profesor-detalle`, profesorId]);
   }
 }

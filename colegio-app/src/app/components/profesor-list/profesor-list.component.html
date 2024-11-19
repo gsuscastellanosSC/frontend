@@ -1,9 +1,22 @@
 <div class="container">
     <h2>Profesores</h2>
-    <ul>
-        <li *ngFor="let profesor of profesores">
-            {{ profesor.nombre }}
-            <button (click)="verDetalle(profesor.id)">Ver Detalles</button>
+
+    <!-- Lista de Profesores -->
+    <ul class="profesor-list">
+        <li *ngFor="let profesor of profesoresPaginados">
+            <span class="profesor-nombre">{{ profesor.nombre }}</span>
+            <button class="detalle-button" (click)="verDetalle(profesor.id)">Ver Detalles</button>
         </li>
     </ul>
+
+    <!-- Paginación -->
+    <div class="pagination-controls">
+        <button (click)="paginaActual > 1 && cambiarPagina(paginaActual - 1)">
+            Anterior
+        </button>
+        <span>Página {{ paginaActual }} de {{ maxPaginas }}</span>
+        <button (click)="paginaActual < maxPaginas && cambiarPagina(paginaActual + 1)">
+            Siguiente
+        </button>
+    </div>
 </div>
