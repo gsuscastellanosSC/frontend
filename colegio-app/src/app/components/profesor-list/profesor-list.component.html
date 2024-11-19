@@ -1,0 +1,9 @@
+<div class="container">
+    <h2>Profesores</h2>
+    <ul>
+        <li *ngFor="let profesor of profesores">
+            {{ profesor.nombre }}
+            <button (click)="verDetalle(profesor.id)">Ver Detalles</button>
+        </li>
+    </ul>
+</div>
