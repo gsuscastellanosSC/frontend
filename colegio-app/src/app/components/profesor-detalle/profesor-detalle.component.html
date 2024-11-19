@@ -1,13 +1,30 @@
 <div class="container">
     <h2>Detalle del Profesor</h2>
-    <ul>
-        <li *ngFor="let detalle of detalles">
-            <strong>Asignatura:</strong> {{ detalle.nombreAsignatura }}
-            <ul>
-                <li *ngFor="let estudiante of detalle.estudiantes">
-                    {{ estudiante.nombre }}
-                </li>
-            </ul>
-        </li>
-    </ul>
+    <table>
+        <thead>
+            <tr>
+                <th>Asignatura</th>
+                <th>Nombre Estudiante</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let dato of datosPaginados">
+                <td>{{ dato.asignaturaNombre }}</td>
+                <td>{{ dato.estudianteNombre }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Controles de Paginación -->
+    <div class="pagination-controls">
+        <button (click)="paginaActual > 1 && cambiarPagina(paginaActual - 1)">
+            Anterior
+        </button>
+        <span>
+            Página {{ paginaActual }} de {{ maxPaginas }}
+        </span>
+        <button (click)="paginaActual < maxPaginas && cambiarPagina(paginaActual + 1)">
+            Siguiente
+        </button>
+    </div>
 </div>
